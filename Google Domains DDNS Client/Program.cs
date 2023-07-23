@@ -49,8 +49,10 @@ namespace Google_Domains_DDNS_Client {
 
       static async Task Main(string[] args) {
          // Create log file if it doesn't exist
-         if (!File.Exists(LOG_FILE_PATH)) File.Create(LOG_FILE_PATH);
-
+         if (!File.Exists(LOG_FILE_PATH)) {
+            using var fileStream = File.Create(LOG_FILE_PATH);
+            fileStream.Close();
+         }
          
          IPAddress publicIP;
 
@@ -128,7 +130,8 @@ namespace Google_Domains_DDNS_Client {
          try {
             lastKnownIPString = (await File.ReadAllTextAsync(LAST_KNOWN_IP_FILE)).Trim();
          } catch (FileNotFoundException) {
-            File.Create(LAST_KNOWN_IP_FILE);
+            using var fileStream = File.Create(LAST_KNOWN_IP_FILE);
+            fileStream.Close();
             lastKnownIPString = "";
          }
 
@@ -137,7 +140,7 @@ namespace Google_Domains_DDNS_Client {
             lastKnownIP = IPAddress.Parse(lastKnownIPString);
          } catch (FormatException e) {
             Console.Error.WriteLine("Warning: Last known IP file doesn't contain a parseable IP. Check logs for more info.");
-            AddEntryToLog(LogEntryType.Warning, $"Last known IP file doesn't contain a parseable IP. Exception message: {e.Message}");
+            AddEntryToLog(LogEntryType.Warning, $"If you run the program for the first time ignore this warning. Last known IP file doesn't contain a parseable IP. Exception message: {e.Message}");
             throw;
          }
 
