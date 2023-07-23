@@ -278,14 +278,14 @@ namespace Google_Domains_DDNS_Client {
 
       static void CreateXmlFileWithTemplate() {
          string xmlTemplate =
-            @"<?xml version=""1.0"" encoding=""utf-8"" ?>" +
-            "<Config>" +
-            "   <domain></domain>" +
-            "   <credentials>" +
-            "      <username><username>" +
-            "      <password></password>" +
-            "   </credentials>" +
-            "</Config>"
+            @"<?xml version=""1.0"" encoding=""utf-8"" ?>\r\n" +
+            "<Config>\r\n" +
+            "   <domain></domain>\r\n" +
+            "   <credentials>\r\n" +
+            "      <username><username>\r\n" +
+            "      <password></password>\r\n" +
+            "   </credentials>\r\n" +
+            "</Config>\r\n"
             ;
 
          File.WriteAllText(CONFIG_FILE_PATH, xmlTemplate);
