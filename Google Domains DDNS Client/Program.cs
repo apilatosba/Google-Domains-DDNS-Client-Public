@@ -15,9 +15,9 @@ using System.Xml.Serialization;
 namespace Google_Domains_DDNS_Client {
    internal class Program {
       const string IP_CHECK_URL = "https://domains.google.com/checkip";
-      const string LAST_KNOWN_IP_FILE = "../../../LastKnownIP.txt";
-      const string LOG_FILE_PATH = "../../../log.txt";
-      const string CONFIG_FILE_PATH = "../../../Config.xml";
+      const string LAST_KNOWN_IP_FILE = "./LastKnownIP.txt";
+      const string LOG_FILE_PATH = "./log.txt";
+      const string CONFIG_FILE_PATH = "./Config.xml";
       readonly static Config config;
       /// <summary>
       /// In milliseconds
