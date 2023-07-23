@@ -23,6 +23,10 @@ namespace Google_Domains_DDNS_Client {
 
 
       static Program() {
+         // Create log file if it doesn't exist
+         if (!File.Exists(LOG_FILE_PATH)) File.Create(LOG_FILE_PATH);
+
+
          bool shouldQuitProgram = false;
 
          try {
@@ -44,10 +48,6 @@ namespace Google_Domains_DDNS_Client {
 
 
       static async Task Main(string[] args) {
-         // Create log file if it doesn't exist
-         if(!File.Exists(LOG_FILE_PATH)) File.Create(LOG_FILE_PATH);
-
-
          IPAddress publicIP;
 
          IPAddress lastKnownIP;
