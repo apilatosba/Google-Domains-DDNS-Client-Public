@@ -310,7 +310,7 @@ namespace Google_Domains_DDNS_Client {
          foreach (var v in obj.GetType().GetFields()) {
             if (v.GetValue(obj) == null || string.IsNullOrEmpty(v.GetValue(obj)?.ToString())) {
                Console.Error.WriteLine($"ERROR: \"{v.Name}\" is null. Check logs for more info.");
-               AddEntryToLog(LogEntryType.Error, $"\"{v.Name}\" can't be null. Go to Config.xml and fill it. If there is no Config.xml file check out readme.md. The xml file should be located at the third parent directory of the executable file");
+               AddEntryToLog(LogEntryType.Error, $"\"{v.Name}\" can't be null. Go to Config.xml and fill it. The xml file should be located at the third parent directory of the executable file ie project root directory");
                hasObjectMeaninglessField = true;
             }
          }
