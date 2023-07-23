@@ -1,4 +1,7 @@
-﻿using System;
+﻿#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8604 // Possible null reference argument.
+#pragma warning disable CS8603 // Possible null reference return.
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
