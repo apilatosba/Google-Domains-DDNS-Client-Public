@@ -278,7 +278,7 @@ namespace Google_Domains_DDNS_Client {
 
       static void CreateXmlFileWithTemplate() {
          string xmlTemplate =
-            @"<?xml version=""1.0"" encoding=""utf-8"" ?>\r\n" +
+            "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\r\n" +
             "<Config>\r\n" +
             "   <domain></domain>\r\n" +
             "   <credentials>\r\n" +
