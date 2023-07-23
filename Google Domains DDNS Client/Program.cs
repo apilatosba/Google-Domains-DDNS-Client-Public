@@ -285,7 +285,7 @@ namespace Google_Domains_DDNS_Client {
             "<Config>\r\n" +
             "   <domain></domain>\r\n" +
             "   <credentials>\r\n" +
-            "      <username><username>\r\n" +
+            "      <username></username>\r\n" +
             "      <password></password>\r\n" +
             "   </credentials>\r\n" +
             "</Config>\r\n"
