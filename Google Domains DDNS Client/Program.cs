@@ -68,7 +68,7 @@ namespace Google_Domains_DDNS_Client {
             string responseBody = await response.Content.ReadAsStringAsync();
 
             ResponseType responseType = HandleResponse(responseBody);
-            if (responseType is not ResponseType.Good || responseType is not ResponseType.Nochg) {
+            if (responseType is not ResponseType.Good && responseType is not ResponseType.Nochg) {
                // Environment.Exit(1); 
                return;
             } else {
