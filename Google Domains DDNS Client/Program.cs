@@ -87,6 +87,9 @@ namespace Google_Domains_DDNS_Client {
             } catch (Exception e) {
                Console.Error.WriteLine("Warning: Couldn't get host public IP. Check logs for more info.");
                AddEntryToLog(LogEntryType.Warning, $"Couldn't get host public IP. Exception message: {e.Message}");
+
+               await Console.Out.WriteLineAsync("Skipping one iteration.");
+               AddEntryToLog(LogEntryType.Info, $"Continuing to the next iteration. If program can't get public IP address from the IP provider server, which is \"{IP_CHECK_URL}\", it skips one iteration without attempting to update the dns record.");
                continue;
             }
 
