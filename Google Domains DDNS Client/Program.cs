@@ -97,7 +97,9 @@ namespace Google_Domains_DDNS_Client {
                var response = await UpdateDNS(publicIP);
                string responseBody = await response.Content.ReadAsStringAsync();
 
-               if (HandleResponse(responseBody) is not ResponseType.Good) Environment.Exit(1); // Quitting program for now. To not get banned from Google Domains.
+               var responseType = HandleResponse(responseBody);
+
+               if (responseType is not ResponseType.Good && responseType is not ResponseType._911) Environment.Exit(1); // Quitting program for now. To not get banned from Google Domains.
 
                lastKnownIP = publicIP;
             }
