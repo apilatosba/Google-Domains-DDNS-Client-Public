@@ -94,7 +94,18 @@ namespace Google_Domains_DDNS_Client {
             }
 
             if (!publicIP.Equals(lastKnownIP)) { // If the public IP has changed
-               var response = await UpdateDNS(publicIP);
+               HttpResponseMessage response;
+
+               try {
+                  response = await UpdateDNS(publicIP);
+               } catch (TaskCanceledException e) {
+                  await Console.Out.WriteLineAsync($"Warning: Couldn't update DNS. Check logs for more info.");
+                  AddEntryToLog(LogEntryType.Warning, $"Couldn't update DNS. Probably because of timeout error. Exception message: {e.Message}");
+                  
+                  AddEntryToLog(LogEntryType.Info, $"Skipping one iteration.");
+                  continue;
+               }
+
                string responseBody = await response.Content.ReadAsStringAsync();
 
                var responseType = HandleResponse(responseBody);
@@ -160,7 +171,6 @@ namespace Google_Domains_DDNS_Client {
          httpClient.DefaultRequestHeaders.Add("User-Agent", "Chrome/41.0");
          httpClient.DefaultRequestHeaders.Add("Authorization", $"Basic {base64EncodedCredentials}");
          httpClient.DefaultRequestHeaders.Add("Host", "domains.google.com");
-
 
          var response = await httpClient.PostAsync($"https://domains.google.com/nic/update?hostname={config.domain}&myip={hostPublicIP}", null);
 
